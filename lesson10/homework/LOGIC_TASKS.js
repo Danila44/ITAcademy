@@ -1,40 +1,34 @@
 /*task1 */
-function numbSort(arr) {
-    let newArr = [];
-    let minArr = [];
-    let maxArr = [];
-    let min = "";
-    let max = "";
-    arr.forEach(element => newArr.push(element.toString()));
-    for (let i = 0; i < newArr.length - 1; i++) {
-        if (newArr[i].length > ((newArr[i + 1]).length)) {
-            newArr.shift()
-        }
-    }
-    console.log(newArr);
+const numbSort = arr => arr.sort((a, b) => String(a).length - String(b).length);
 
-}
-//numbSort([2, 37, 1, 2, 739, 2]);
+numbSort([2, 37, 1, 2, 739, 2,]);
 
 /*task2 */
 
+function sortStr(arr, str) {
+    let newArr = [];
+    arr.forEach(element => element[0] === str[0] && newArr.push(element));
+    arr = arr.filter(element => element[0] !== str[0])
+    arr.sort((a, b) => String(b).length - String(a).length).forEach(element => newArr.push(element));
 
+    return newArr
+}
+sortStr(["orange ", "mandarin", " pear", "coconut "], "cmop");
+sortStr(["middle", "junior", "senior"], "stnmj");
+sortStr(["bike", "car", "motorcycle"], "camrb");
 
 /*task3 */
 
 function revOddWord(str) {
-   
-    let newStr = str.split('')
-    
-   let x = [];
-    if (newStr.length % 2 > 0) {
-    let y =  newStr.sort(function (a, b) {
-        return a - b;
-    });   
-    console.log(y);
-    }
-    
-    return newStr
+    let newArr = [];
+    let symbols = ['.', ',', '-', ':', '!', '?'];
+
+    symbols.forEach(element => str = str.replaceAll(element, ''));
+    str.split(' ').forEach(element => element.length % 2 ? newArr.push(element.split('').reverse().join('')) : newArr.push(element));
+
+    return newArr.join(' ');
 }
 
-console.log(revOddWord("Egg") );
+revOddWord("It is! false");
+revOddWord("Dear Santa, give! me a new! iPhone");
+revOddWord("Egg");
